@@ -1,0 +1,62 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User account information and subscription status",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "plan": { "type": "string", "enum": ["free", "pro", "enterprise"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "plan"]
+    },
+    "Voice": {
+      "title": "Voice Profile",
+      "description": "A trained AI voice model",
+      "type": "object",
+      "properties": {
+        "ownerId": { "type": "string" },
+        "name": { "type": "string" },
+        "status": { "type": "string", "enum": ["training", "active", "failed"] },
+        "quality": { "type": "number" },
+        "elevenLabsVoiceId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["ownerId", "name", "status"]
+    },
+    "AudioGeneration": {
+      "title": "Audio Generation",
+      "description": "A history record of a text-to-speech generation",
+      "type": "object",
+      "properties": {
+        "ownerId": { "type": "string" },
+        "voiceId": { "type": "string" },
+        "text": { "type": "string" },
+        "audioUrl": { "type": "string" },
+        "duration": { "type": "number" },
+        "size": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["ownerId", "voiceId", "text", "audioUrl"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/voices/{voiceId}": {
+      "schema": "Voice",
+      "description": "Voice profiles"
+    },
+    "/history/{audioId}": {
+      "schema": "AudioGeneration",
+      "description": "Generation history"
+    }
+  }
+}

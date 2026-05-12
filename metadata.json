@@ -1,0 +1,6 @@
+{
+  "name": "VoiceOver AI",
+  "description": "Professional AI voice cloning and text-to-speech SaaS platform.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": []
+}
